@@ -1,0 +1,37 @@
+{% extends "allauth/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if user %}
+    <h1>Welcome, {{ user }}</h1>
+    <p>Following is the Extra information provided to allauth:</p>
+    <h1>Release Data is: </h1>
+    <!-- Release_Data/{{ user }} -->
+    <b><p><a href="/downzip">打包下载全部</a></p></b>
+
+    {% for dir in dirs%}
+    <p><a href="/{{ path }}{{ dir }}">/{{ path }}{{ dir }}</a></p>
+    {% endfor %}
+
+    {% for file in files%}
+    <p><a href="/{{ path }}{{ file }}">/{{ path }}{{ file }}</a></p>
+    {% endfor %}
+
+    <!-- <p><a href="{% static 'Release_Data/' %}{{ user }}/{{ file }}">Release_Data/{{ user }}/{{ file }}</a></p> -->
+    <!-- <p><a href="{% static 'Release_Data/test/humans.txt' %}">Release_Data/test/humans.txt</a></p>
+    <p><a href="{% static 'Release_Data/test/Note.md' %}">Release_Data/test/Note.md</a></p>
+    <p><a href="{% static 'Release_Data/test/install.sh' %}">Release_Data/test/install.sh</a></p> -->
+
+        <!-- {% for account in user.socialaccount_set.all %}
+        <h2 style="text-transform:capitalize;">{{ account.provider }} account data</h2>
+        <p><img width="50" height="50" src="{{ account.get_avatar_url }}" /></p>
+        <p>UID: <a href="{{account.extra_data.link }}">{{ account.uid }}</a></p>
+        <p>Username: {{ account.extra_data.username }}</p>
+        <p>First Name: {{ account.extra_data.first_name }}</p>
+        <p>Last Name: {{ account.extra_data.last_name }}</p>
+        <p>Profile Link: <a href="{{ account.extra_data.link }}">{{ account.extra_data.link }}</a></p>
+    {% endfor %} -->
+{% endif %}
+
+{% endblock content %}
